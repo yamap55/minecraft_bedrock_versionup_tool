@@ -24,7 +24,7 @@ def post_process(old_minecraft_path: Path, module_path: Path, bk_dir: Path):
     logger.info(f"backup dir zip.")
     zip_dir(old_minecraft_path, bk_dir)
     shutil.rmtree(old_minecraft_path)
-    shutil.move(module_path, bk_dir)
+    module_path.rename(bk_dir / module_path.name)
 
 def pre_process(work_dir: Path, minecraft_dir: Path) -> Tuple[Path, Path]:
 
