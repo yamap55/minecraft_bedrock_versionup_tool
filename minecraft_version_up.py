@@ -11,7 +11,7 @@ from typing import Tuple, List
 
 basicConfig(level=DEBUG, format='{asctime} [{levelname:.4}] {name}: {message}', style='{')
 logger = getLogger(__name__)
-WORK_DIR = Path("/home/opc")
+WORK_DIR = Path("/home/ubuntu")
 MINECRAFT_DIR = WORK_DIR / "minecraft"
 BACKUP_DIR = WORK_DIR / "bk"
 OVERWRITE_SETTING_FILES = ["permissions.json", "server.properties", "allowlist.json"]
