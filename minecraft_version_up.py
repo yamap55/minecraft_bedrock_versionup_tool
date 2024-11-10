@@ -29,11 +29,19 @@ def post_process(old_minecraft_path: Path, module_path: Path, bk_dir: Path):
 def pre_process(work_dir: Path, minecraft_dir: Path) -> Tuple[Path, Path]:
 
     def get_minecraft_module(minecraft_module_name: str, base_path: Path) -> Path:
-        logger.info(f"get minecraft module. {minecraft_module_name}")
         url = f"https://www.minecraft.net/bedrockdedicatedserver/bin-linux/{minecraft_module_name}"
+        logger.info(f"get minecraft module. {url}")
         destination = base_path / minecraft_module_name
 
-        urllib.request.urlretrieve(url, destination)
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+        }
+
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req) as response, open(destination, "wb") as out_file:
+            out_file.write(response.read())
+        logger.info(f"get minecraft module done. {destination}")
+
         return destination
 
     def get_current_date():
