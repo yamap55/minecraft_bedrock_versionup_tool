@@ -30,7 +30,7 @@ def pre_process(work_dir: Path, minecraft_dir: Path) -> Tuple[Path, Path]:
 
     def get_minecraft_module(minecraft_module_name: str, base_path: Path) -> Path:
         logger.info(f"get minecraft module. {minecraft_module_name}")
-        url = f"https://minecraft.azureedge.net/bin-linux/{minecraft_module_name}"
+        url = f"https://www.minecraft.net/bedrockdedicatedserver/bin-linux/{minecraft_module_name}"
         destination = base_path / minecraft_module_name
 
         urllib.request.urlretrieve(url, destination)
